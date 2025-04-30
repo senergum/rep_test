@@ -8,15 +8,13 @@ ___
 ___
 
 ## Планируемые к автоматизации модули
-- один
-  - один
+- Autorisation
+  - with google
+  - with vk
+  - remember-Me
+- View profile
+- Edit profile
+  - change avater
   - два
   - три
-- два
-  - один
-  - два
-  - три
-- три
-  - один
-  - два
-  - три
+- Logout
