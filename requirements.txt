@@ -1,0 +1,76 @@
+# Файл списка зависимостей
+# Команда для установки:
+# pip install requirements.txt
+# Команда для раздельной установки:
+# pip install selenium webdriver_manager pytest pytest-html allure-pytest requests locust
+# Команда формирования этого документа (заменяет старый т.е. этот):
+# pip freeze > requirements.txt
+
+# базовые библиотеки тестирования
+selenium==4.32.0 # основной фреймворк тестирования ui
+webdriver-manager==4.0.2 # управление браузерами для selenium
+pytest==8.3.5 # библиотека управления тестами
+
+# отчёты
+pytest-html==4.1.1 # отчеты пайтест в формате хтмл
+allure-pytest==2.14.0 # отчеты аллюр и пайтест
+
+# апи
+requests==2.32.3 # хттп запросы
+
+# нагрузочное
+locust==2.37.0 # простое нагрузочное тестирование
+
+# прочее
+allure-python-commons==2.14.2
+attrs==25.3.0
+bidict==0.23.1
+blinker==1.9.0
+Brotli==1.1.0
+certifi==2025.4.26
+cffi==1.17.1
+charset-normalizer==3.4.2
+click==8.1.8
+colorama==0.4.6
+ConfigArgParse==1.7
+Flask==3.1.0
+flask-cors==5.0.1
+Flask-Login==0.6.3
+gevent==24.11.1
+geventhttpclient==2.3.3
+greenlet==3.2.1
+h11==0.16.0
+idna==3.10
+iniconfig==2.1.0
+itsdangerous==2.2.0
+Jinja2==3.1.6
+locust-cloud==1.21.2
+MarkupSafe==3.0.2
+msgpack==1.1.0
+outcome==1.3.0.post0
+packaging==25.0
+platformdirs==4.3.7
+pluggy==1.5.0
+psutil==7.0.0
+pycparser==2.22
+PySocks==1.7.1
+pytest-metadata==3.1.1
+python-dotenv==1.1.0
+python-engineio==4.12.0
+python-socketio==5.13.0
+pywin32==310
+pyzmq==26.4.0
+requests==2.32.3
+setuptools==80.3.1
+simple-websocket==1.1.0
+sniffio==1.3.1
+sortedcontainers==2.4.0
+trio==0.30.0
+trio-websocket==0.12.2
+typing_extensions==4.13.2
+urllib3==2.4.0
+websocket-client==1.8.0
+Werkzeug==3.1.3
+wsproto==1.2.0
+zope.event==5.0
+zope.interface==7.2

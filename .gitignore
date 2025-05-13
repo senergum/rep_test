@@ -1,0 +1,40 @@
+# Автогенерируемые файлы
+/reports/
+/screenshots/
+/allure-results/
+*.log
+*.orig
+*.rar
+*.7z
+*.zip
+*.tar
+*.gz
+*.old
+*.tmp
+*.tags
+*.tags_sorted_by_file
+*.metadata
+*.lock
+*.swp
+*.out
+
+# Локальное окружение
+/config/secrets.py
+.venv/
+/venv/
+.env/
+/env/
+.env
+
+# IDE
+.idea/
+.vscode/
+__pycache__/
+*.pyc
+
+# Системные
+.DS_Store
+Thumbs.db
+
+# Прочее
+*.exe
