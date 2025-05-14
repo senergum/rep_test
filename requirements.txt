@@ -1,6 +1,6 @@
 # Файл списка зависимостей
 # Команда для установки:
-# pip install requirements.txt
+# pip install -r requirements.txt
 # Команда для раздельной установки:
 # pip install selenium webdriver_manager pytest pytest-html allure-pytest requests locust
 # Команда формирования этого документа (заменяет старый т.е. этот):
