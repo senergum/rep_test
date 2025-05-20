@@ -29,8 +29,8 @@ def browser(request):
     if browser_name == "chrome":
         options = ChromeOptions()
         if headless:
-            options.add_argument("--headless=new")  # new API
-        options.add_argument("--window-size=1280,720")
+            options.add_argument("--headless=new")
+        options.add_argument("--window-size=1920,1080")
         service = ChromeService(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=options)
 
@@ -38,8 +38,7 @@ def browser(request):
         options = FirefoxOptions()
         if headless:
             options.add_argument("--headless")
-        options.add_argument("--width=1280")
-        options.add_argument("--height=720")
+        options.add_argument("--window-size=1920,1080")
         service = FirefoxService(GeckoDriverManager().install())
         driver = webdriver.Firefox(service=service, options=options)
 
@@ -47,7 +46,7 @@ def browser(request):
         options = EdgeOptions()
         if headless:
             options.add_argument("--headless=new")
-        options.add_argument("--window-size=1280,720")
+        options.add_argument("--window-size=1920,1080")
         service = EdgeService(EdgeChromiumDriverManager().install())
         driver = webdriver.Edge(service=service, options=options)
 
