@@ -1,0 +1,18 @@
+from selenium.webdriver.common.by import By
+
+auth_button = (By.CSS_SELECTOR,"body > div.modalBluring > div > div.topMenu__wrapper.topMenu_experimentFixedMenu > div > div.toolbox > button")
+goto_intAuth = (By.CSS_SELECTOR,"#modalAuthWindow > div > div > form.hello.dialog > a")
+email_input = (By.CSS_SELECTOR,"#modalAuthWindow > div > div > form.intAuth.dialog > label:nth-child(2) > input[type=email]")
+pass_input = (By.CSS_SELECTOR,"#modalAuthWindow > div > div > form.intAuth.dialog > label:nth-child(3) > input")
+login_button = (By.CSS_SELECTOR,"#modalAuthWindow > div > div > form.intAuth.dialog > button")
+log_elem = (By.CSS_SELECTOR,"body > div.modalBluring > div > div.topMenu__wrapper.topMenu_experimentFixedMenu > div > div.toolbox > a.topMenu__avatar.submenu-opener > img")
+m_button = (By.CSS_SELECTOR, "#modalWindow > div > div > div > button.decline.button_theme_grey")
+reg_button = (By.CSS_SELECTOR, "#modalAuthWindow > div > div > form.hello.dialog > button:nth-child(2)")
+input_name = (By.CSS_SELECTOR, "#modalAuthWindow > div > div > form.intReg.dialog > label:nth-child(3) > input[type=textfield]")
+input_lastname = (By.CSS_SELECTOR, "#modalAuthWindow > div > div > form.intReg.dialog > label:nth-child(4) > input[type=textfield]")
+input_email = (By.CSS_SELECTOR, "#modalAuthWindow > div > div > form.intReg.dialog > label:nth-child(5) > input[type=email]")
+input_pass = (By.CSS_SELECTOR, "#modalAuthWindow > div > div > form.intReg.dialog > label:nth-child(6) > input")
+input_repass = (By.CSS_SELECTOR, "#modalAuthWindow > div > div > form.intReg.dialog > label:nth-child(7) > input")
+gotovo = (By.CSS_SELECTOR, "#modalAuthWindow > div > div > form.intReg.dialog > button")
+prevoshodno = (By.CSS_SELECTOR, "#modalAuthWindow > div > div > form.intRegFinished.dialog > div > button")
+logout = (By.CSS_SELECTOR, "body > div.modalBluring > div > div.table.main-table_content.main-table.main-container_experimentFixedMenu > div.table-row > div.table-cell.leftContent.userPage.user_info > div.userPage__avatar-box > button")
