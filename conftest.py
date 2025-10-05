@@ -72,9 +72,11 @@ def browser(request):
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--window-size=1360,768")
-        import tempfile
+
         user_data_dir = tempfile.mkdtemp(prefix="chrome-user-data-")
+        print(f"[DEBUG] user-data-dir: {user_data_dir}")
         options.add_argument(f"--user-data-dir={user_data_dir}")
+
         service = ChromeService(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=options)
         driver.set_window_size(1360, 768)
@@ -104,6 +106,7 @@ def browser(request):
     driver.implicitly_wait(5)
     yield driver
     driver.quit()
+    shutil.rmtree(user_data_dir, ignore_errors=True)
 
 def pytest_sessionfinish(session, exitstatus):
     print("[INFO] Генерация Allure-отчета...")
