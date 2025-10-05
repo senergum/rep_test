@@ -1,0 +1,8 @@
+v_film = "Добро пожаловать на Юг"
+v_film_err = "дабро пажаловать на юк"
+v_actor = "Том Харди"
+s_url = "https://ru.kinorium.com/R2D2/?type=R2D2&order=rating&hide_status%5B%5D=done&hide_status%5B%5D=never&kr_rating_min=7&imdb_rating_min=7"
+s_v_url = "https://ru.kinorium.com/videos/trailers/"
+ser_text = "iocheckbox trailers__iocheckbox_serial"
+lang_text = "iocheckbox trailers__iocheckbox_lng"
+prem_url = "https://ru.kinorium.com/movies/cinema/"

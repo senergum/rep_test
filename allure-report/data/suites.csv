@@ -1,4 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","11698","test_logout","test","Wed Jul 23 20:33:45 GMT+07:00 2025","passed","Wed Jul 23 20:33:57 GMT+07:00 2025","","test_test","",""
-"","10863","test_login","test","Wed Jul 23 20:33:34 GMT+07:00 2025","passed","Wed Jul 23 20:33:45 GMT+07:00 2025","","test_test","",""
-"","8743","test_reg","test","Wed Jul 23 20:33:26 GMT+07:00 2025","passed","Wed Jul 23 20:33:34 GMT+07:00 2025","","test_test","",""

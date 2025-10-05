@@ -1,23 +1,36 @@
 import subprocess
 import os
+import sys
+import shutil
 
-allure_results_dir = "reports/allure-results"
+def run_tests():
+    # Очистка старых результатов
+    allure_results = "allure-results"
+    if os.path.exists(allure_results):
+        shutil.rmtree(allure_results)
+    
+    # Запуск pytest
+    cmd = [
+        sys.executable, "-m", "pytest",
+        "test/smoke/test_test.py",
+        "-v",
+        "--browser=chrome",
+        f"--alluredir={allure_results}"
+    ]
+    
+    print("Запуск:", " ".join(cmd))
+    result = subprocess.run(cmd)
+    
+    # Генерация отчёта только если тесты прошли
+    if result.returncode in [0, 1, 2, 5]:  # Коды успеха pytest
+        if os.path.exists(allure_results) and os.listdir(allure_results):
+            print("Генерация Allure отчёта...")
+            subprocess.run([sys.executable, "-m", "allure", "serve", allure_results])
+        else:
+            print("Нет результатов для отчёта")
+    
+    return result.returncode
 
-command_pytest = [
-    "pytest",
-    "test/smoke/КАКОЕ ТО НАЗВАНИЕ В БУДУЩЕМ", # ДОБАВИТЬ НАЗВАНИЕ АКТИВИРУЕМОГО .py
-    "--browser=firefox",
-    "--headless",
-    "--alluredir=" + allure_results_dir,
-]
-
-command_allure = [
-    "allure",
-    "serve",
-    allure_results_dir,
-]
-
-result = subprocess.run(command_pytest)
-report = subprocess.run(command_allure)
-
-exit(result.returncode)
+if __name__ == "__main__":
+    exit_code = run_tests()
+    sys.exit(exit_code)

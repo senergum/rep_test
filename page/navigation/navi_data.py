@@ -1,0 +1,5 @@
+premier_url = "https://ru.kinorium.com/movies/online/"
+all_films_url = "https://ru.kinorium.com/R2D2/?type=R2D2&order=rating&hide_status%5B%5D=done&hide_status%5B%5D=never&kr_rating_min=7&imdb_rating_min=7"
+serials_url = "https://ru.kinorium.com/shows/popular/"
+lenta_url = "https://ru.kinorium.com/feed/friends/"
+video_url = "https://ru.kinorium.com/videos/trailers/"

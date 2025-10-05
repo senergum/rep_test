@@ -2,6 +2,7 @@ import pytest
 import subprocess
 import os
 import shutil
+import allure
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -12,33 +13,40 @@ from selenium.webdriver.edge.service import Service as EdgeService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
-import selenium.common.exceptions
-from page.login.log_locators import (
-    goto_intAuth,
-    auth_button,
-    email_input,
-    pass_input,
-    login_button,
-    log_elem,
-    m_button,
-    reg_button,
-    input_email,
-    input_lastname,
-    input_name,
-    input_pass,
-    input_repass,
-    gotovo,
-    prevoshodno,
-    logout)
-from page.login.log_data import (
-    name,
-    user,
-    password,
-    login_url,
-    repass,
-    first_name,
-    last_name,
-    email)
+
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    """Делает скриншот при падении теста"""
+    outcome = yield
+    report = outcome.get_result()
+
+    if report.when == "call" and report.failed:
+        # Получаем драйвер из фикстуры
+        driver = None
+        for fixture_name in item.funcargs:
+            if "browser" in fixture_name:
+                driver = item.funcargs[fixture_name]
+                break
+        
+        if driver is not None:
+            # Делаем скриншот
+            screenshot_path = f"allure-results/screenshot_{item.name}.png"
+            driver.save_screenshot(screenshot_path)
+            
+            with open(screenshot_path, "rb") as file:
+                allure.attach(
+                    file.read(),
+                    name="screenshot",
+                    attachment_type=allure.attachment_type.PNG
+                )
+
+# ФИНАЛЬНАЯ ВЕРСИЯ - ТОЛЬКО ОЧИСТКА КЭША
+def pytest_configure(config):
+    """Очистка кэша pytest и allure перед тестами"""
+    if os.path.exists('.pytest_cache'): 
+        shutil.rmtree('.pytest_cache')
+    if os.path.exists('allure-results'): 
+        shutil.rmtree('allure-results')
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -82,7 +90,6 @@ def browser(request):
         service = EdgeService(EdgeChromiumDriverManager().install())
         driver = webdriver.Edge(service=service, options=options)
         driver.set_window_size(1280, 720)
-
 
     else:
         raise ValueError(f"Неизвестный браузер: {browser_name}")

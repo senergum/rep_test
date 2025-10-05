@@ -99,3 +99,17 @@ class AssertPage:
         name_locator = (By.CSS_SELECTOR,
                         f"{selector} {item_selector}:nth-child({position}) .inventory_item_name")
         self.element_text_is(name_locator, expected_text)
+
+    def href_contains_text(self, locator: tuple, expected_text: str):
+        """Проверяет, что атрибут href элемента содержит указанный текст"""
+        element = self.wait.until(EC.presence_of_element_located(locator))
+        actual_href = element.get_attribute("href") or ""
+        assert expected_text in actual_href, f"Атрибут href элемента {locator} не содержит текст: {expected_text}. Actual href: {actual_href}"
+        self.logger.info(f"Атрибут href элемента {locator} содержит текст: {expected_text}")
+
+    def checkbox_is_inactive(self, locator):
+        """Проверяет что чекбокс неактивен"""
+        element = self.wait.until(EC.presence_of_element_located(locator))
+        has_checked_class = "iocheckboxChecked" in element.get_attribute("class")
+        assert not has_checked_class, f"Чекбокс {locator} активен, но должен быть неактивен"
+        self.logger.info(f"Чекбокс {locator} неактивен")
