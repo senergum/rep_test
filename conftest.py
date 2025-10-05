@@ -3,6 +3,7 @@ import subprocess
 import os
 import shutil
 import allure
+import tempfile
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -69,9 +70,13 @@ def browser(request):
         if headless:
             options.add_argument("--headless=new")
         options.add_argument("--window-size=1360,768")
+        import tempfile
+        user_data_dir = tempfile.mkdtemp()
+        options.add_argument(f"--user-data-dir={user_data_dir}")
         service = ChromeService(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=options)
         driver.set_window_size(1360, 768)
+    
 
     elif browser_name == "firefox":
         options = FirefoxOptions()
@@ -112,3 +117,4 @@ def pytest_sessionfinish(session, exitstatus):
 def pytest_sessionstart(session):
     if not os.path.exists("allure-results"):
         os.makedirs("allure-results")
+

@@ -38,3 +38,7 @@ Thumbs.db
 
 # Прочее
 *.exe
+/allure-reports
+/allure-report/
+/allure-report
+/allure-reports/

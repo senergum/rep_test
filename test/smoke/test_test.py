@@ -22,6 +22,12 @@ def test_search(browser):
     search_page = Search(browser)
     search_page.search()
 
+"""Тест с ошибкой для скриншота"""
+@pytest.mark.smoke
+def test_errT(browser):
+    search_errT = Search(browser)
+    search_errT.errT()
+
 @pytest.mark.smoke
 def test_searchActor(browser):
     search_page = Search(browser)
@@ -57,8 +63,10 @@ def test_logout(browser):
     logout_page = LoginPage(browser)
     logout_page.logout()
 
-"""Это в конце, это тест с ошибкой для скриншота"""
-@pytest.mark.smoke
-def test_errT(browser):
-    search_errT = Search(browser)
-    search_errT.errT()
+
+
+
+
+
+
+
