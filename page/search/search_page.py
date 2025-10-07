@@ -31,7 +31,8 @@ from page.search.search_locators import (
     fil_ser_off,
     gen_prem,
     coun_prem,
-    years_prem
+    years_prem,
+    donate
 )
 from page.search.search_data import (
     v_film,
@@ -39,7 +40,8 @@ from page.search.search_data import (
     s_url,
     s_v_url,
     v_film_err,
-    prem_url
+    prem_url,
+    dotate_url
 )
 import time
 
@@ -88,9 +90,9 @@ class Search(BasePage):
     def searchFiltorCheck(self):
         self.actions.navigate(s_v_url)
         self.asserts.url_is(s_v_url)
-        self.actions.click(fil_ser)
+        self.actions.safe_click(fil_ser)
         self.asserts.element_is_visible(fil_ser_off)
-        self.actions.click(fil_lang)
+        self.actions.safe_click(fil_lang)
         self.asserts.checkbox_is_inactive(fil_lang)
 
     @allure.step("Не прошедший тест")
@@ -110,3 +112,10 @@ class Search(BasePage):
         self.asserts.element_is_enabled(coun_prem)
         self.actions.click(years_prem)
         self.asserts.element_is_enabled(years_prem)
+
+    @allure.step("Донаты")
+    def donate(self):
+        self.actions.navigate(login_url)
+        self.asserts.url_is(login_url)
+        self.actions.click(donate)
+        self.asserts.url_is(dotate_url)

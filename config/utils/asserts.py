@@ -1,6 +1,7 @@
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from config.logger import get_logger
 
@@ -113,3 +114,36 @@ class AssertPage:
         has_checked_class = "iocheckboxChecked" in element.get_attribute("class")
         assert not has_checked_class, f"Чекбокс {locator} активен, но должен быть неактивен"
         self.logger.info(f"Чекбокс {locator} неактивен")
+
+    def checkbox_is_active(self, locator):
+        """Проверяет что чекбокс активен"""
+        element = self.wait.until(EC.presence_of_element_located(locator))
+        has_checked_class = "iocheckboxChecked" in element.get_attribute("class")
+        assert has_checked_class, f"Чекбокс {locator} неактивен, но должен быть активен"
+        self.logger.info(f"Чекбокс {locator} активен")
+
+    def assert_tooltip_activated(self, expected_id="2"):
+        """Проверяет активацию тултипа по aria-describedby"""
+        tooltip_locator = (By.CSS_SELECTOR, "div.tooltip_copylink")
+        try:
+            # Ждем появления нужного aria-describedby
+            WebDriverWait(self.driver, 3).until(
+                lambda driver: driver.find_element(*tooltip_locator).get_attribute("aria-describedby") == expected_id
+            )
+            self.logger.info(f"✓ Тултип активирован (aria-describedby='{expected_id}')")
+            return True
+        except TimeoutException:
+            # Проверяем текущее состояние для диагностики
+            try:
+                current_id = self.driver.find_element(*tooltip_locator).get_attribute("aria-describedby")
+                self.logger.error(f"✗ Ожидали id '{expected_id}', получили '{current_id}'")
+            except:
+                self.logger.error("✗ Элемент тултипа не найден")
+            return False
+        
+    def assert_value_is(self, locator, expected_value):
+        """Проверяет что value элемента соответствует ожидаемому"""
+        element = self.wait.until(EC.presence_of_element_located(locator))
+        actual_value = element.get_attribute("value")
+        assert actual_value == expected_value, f"Ожидали value='{expected_value}', получили '{actual_value}'"
+        self.logger.info(f"Value элемента {locator} соответствует: {expected_value}")

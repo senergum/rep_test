@@ -14,6 +14,7 @@ from selenium.webdriver.edge.service import Service as EdgeService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
+from page.login.log_page import LoginPage
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
@@ -40,6 +41,13 @@ def pytest_runtest_makereport(item, call):
                     name="screenshot",
                     attachment_type=allure.attachment_type.PNG
                 )
+
+@pytest.fixture
+def login(browser):
+    """Фикстура для выполнения логина"""
+    login_page = LoginPage(browser)
+    login_page.login()
+    return browser
 
 # ФИНАЛЬНАЯ ВЕРСИЯ - ТОЛЬКО ОЧИСТКА КЭША
 def pytest_configure(config):

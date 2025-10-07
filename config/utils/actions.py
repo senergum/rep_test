@@ -1,3 +1,5 @@
+from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException
+
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -5,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
 from config.logger import get_logger
+import time
 
 
 class ActionPage:
@@ -95,4 +98,43 @@ class ActionPage:
         element = custom_wait.until(EC.presence_of_element_located(locator))
         actions = ActionChains(self.driver)
         actions.move_to_element(element).perform()
+
+    def safe_click(self, locator, timeout=10):
+        """Универсальный безопасный клик с обработкой перехвата"""
+        try:
+            # Ждем пока элемент станет кликабельным
+            element = WebDriverWait(self.driver, timeout).until(
+                EC.element_to_be_clickable(locator)
+            )
+            
+            # Прокрутка к центру экрана
+            self.driver.execute_script(
+                "arguments[0].scrollIntoView({block: 'center', inline: 'center', behavior: 'smooth'});", 
+                element
+            )
+            time.sleep(0.5)
+            
+            # Пробуем обычный клик
+            element.click()
+            self.logger.info(f"Успешный клик по элементу: {locator}")
+            return True
+            
+        except ElementClickInterceptedException:
+            # Если перехвачен - кликаем через JS
+            try:
+                self.logger.warning(f"Элемент перехвачен, пробуем JS клик: {locator}")
+                self.driver.execute_script("arguments[0].click();", element)
+                self.logger.info(f"JS клик успешен: {locator}")
+                return True
+            except Exception as e:
+                self.logger.error(f"JS клик также не удался: {e}")
+                return False
+                
+        except TimeoutException:
+            self.logger.error(f"Элемент не стал кликабельным за {timeout} секунд: {locator}")
+            return False
+            
+        except Exception as e:
+            self.logger.error(f"Неизвестная ошибка при клике: {e}")
+            return False
 
