@@ -39,8 +39,8 @@ def test_errT(browser):
 
 @pytest.mark.smoke
 def test_searchActor(browser):                  # поиск актёра
-    search_page = Search(browser)
-    search_page.searchActor()
+    search_actor = Search(browser)
+    search_actor.searchActor()
 
 @pytest.mark.smoke
 def test_searchFilter(browser):                 # фильтры поиска
