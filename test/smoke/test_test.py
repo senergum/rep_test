@@ -12,103 +12,103 @@ def loginAuth(browser):
     loginAuth.login()
 
 @pytest.mark.smoke                           
-def test_navigation(browser):                   # базовая навигация по сайту
+def test_navigation(browser):                   # 1 базовая навигация по сайту
     navigation = NaviGation(browser)
     navigation.navigation()
 
 @pytest.mark.smoke
-def test_main_win(browser):                     # переход на главную страницу
+def test_main_win(browser):                     # 2 переход на главную страницу
     main_win = NaviGation(browser)
     main_win.main_win()
 
 @pytest.mark.smoke
-def test_donate(browser):                        # Страница доната
+def test_donate(browser):                        # 3 Страница доната
     donate = Search(browser)
     donate.donate()
 
 @pytest.mark.smoke
-def test_search(browser):                       # поиск фильмов
+def test_search(browser):                       # 4 поиск фильмов
     search_page = Search(browser)
     search_page.search()
 
 """Тест с ошибкой для скриншота"""
-@pytest.mark.smoke                              # поиск фильма с ошибкой в названии
+@pytest.mark.smoke                              # 5 поиск фильма с ошибкой в названии
 def test_errT(browser):
     search_errT = Search(browser)
     search_errT.errT()
 
 @pytest.mark.smoke
-def test_searchActor(browser):                  # поиск актёра
+def test_searchActor(browser):                  # 6 поиск актёра
     search_actor = Search(browser)
     search_actor.searchActor()
 
 @pytest.mark.smoke
-def test_searchFilter(browser):                 # фильтры поиска
+def test_searchFilter(browser):                 # 7 фильтры поиска
     search_filter = Search(browser)
     search_filter.searchFiltor()
 
 @pytest.mark.smoke
-def test_searchFilterCheck(browser):            # проверка чекбоксов
+def test_searchFilterCheck(browser):            # 8 проверка чекбоксов
     search_filterCheck = Search(browser)
     search_filterCheck.searchFiltorCheck()
 
 @pytest.mark.smoke
-def test_premier(browser):                      # проверка раздела премьеры
+def test_premier(browser):                      # 9 проверка раздела премьеры
     search_premier = Search(browser)
     search_premier.premier()
 
 @pytest.mark.smoke
-def test_reg(browser):                          # проверка регистрации
+def test_reg(browser):                          # 10 проверка регистрации
     reg_page = LoginPage(browser)
     reg_page.reg()
 
 @pytest.mark.smoke
-def test_login(browser):                        # проверка логина
+def test_login(browser):                        # 11 проверка логина
     login_page = LoginPage(browser)
     login_page.login()
 
 @pytest.mark.smoke
-def test_profile(browser):               # переход на главную страницу профиля
+def test_profile(browser):                       # 12 переход на главную страницу профиля
     profile_page = ProfilePage(browser)
     profile_page.main()
 
 @pytest.mark.smoke
-def test_active_kino(browser):       # кнопки активности на странице с кино
+def test_active_kino(browser):                # 13 кнопки активности на странице с кино
     active = ProfilePage(browser)
     active.active_kino()
 
 @pytest.mark.smoke  
-def test_baje(browser):              # проверка бейджей в профиле
+def test_baje(browser):                      # 14 проверка бейджей в профиле
     baje = ProfilePage(browser)
     baje.baje()
 
 @pytest.mark.smoke  
-def test_copppy(browser):            # проверка копирования страницы
+def test_copppy(browser):                   # 15 проверка копирования страницы
     copppy = ProfilePage(browser)
     copppy.copppy()
 
 @pytest.mark.smoke  
-def test_setings(browser):            # проверка перехода на страницу настпроек
+def test_setings(browser):                  # 16 проверка перехода на страницу настпроек
     setiungs = ProfilePage(browser)
     setiungs.setings()
 
 @pytest.mark.smoke  
-def test_setingsCheck(browser):       # проверка чекбоксов в настройках
+def test_setingsCheck(browser):             # 17 проверка чекбоксов в настройках
     setiungsCheck = ProfilePage(browser)
     setiungsCheck.setingsCheck()
 
 @pytest.mark.smoke  
-def test_setingsNick(browser):        # проверка изменения никнейма
+def test_setingsNick(browser):              # 18 проверка изменения никнейма
     setiungsNick = ProfilePage(browser)
     setiungsNick.setingsNick()
     time.sleep(1)
 
 @pytest.mark.smoke  
-def test_setingsback(browser):        # проверка отправки бэкапа на почту
+def test_setingsback(browser):               # 19 проверка отправки бэкапа на почту
     setiungsback = ProfilePage(browser)
     setiungsback.setingsback()
 
 @pytest.mark.smoke
-def test_logout(browser):                       # првоерка логаута
+def test_logout(browser):                    # 20 првоерка логаута
     logout_page = LoginPage(browser)
     logout_page.logout()
